@@ -122,4 +122,19 @@ and c.category_id in (select category_id
                       group by category_id
                        having count(film_id)>=5);
 ```
+
+## 理解为何以下答案不正确
+- 理解语句执行的先后顺序，先where再group by：
+  - 如果where和group by并列，会先执行where的过滤条件，使得group by里的having失去先决作用。
+  
+```sql
+select c.name as '分类名称category.name',
+       count(f.film_id) as '电影数目count(film.film_id)'
+from film f,category c,film_category fc
+where f.film_id=fc.film_id
+and fc.category_id=c.category_id
+and f.description like '%robot%'
+group by c.name
+having count(fc.category_id)>=5
+```
 </details>
