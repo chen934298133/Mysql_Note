@@ -7,3 +7,4 @@
 - [SQL27 ](MySQL_Code/SQL27.md)
 - [SQL28 多表联查 + Like匹配](MySQL_Code/SQL28.md)
 - [SQL29 多表联查(LEFT JOIN) +IS NULL](MySQL_Code/SQL29.md)
+- [SQL30 子查询](MySQL_Code/SQL30.md)
