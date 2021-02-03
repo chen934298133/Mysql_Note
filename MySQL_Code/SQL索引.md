@@ -1,0 +1,148 @@
+# MySQL索引
+
+-  索引不一定是唯一所以，是可以加快查询速度的。
+- 立索引原则：“**如何查就如何建**”。
+- 索引的建立，唯一的原目的就是**为了加快查询**（广义的查询），实际上**建立索引会使得数据存储所占空间变大**，
+  - 有时索引所占的空间会查过数据本身的空间。
+  - 索引的建立也会使得数据插入时变慢，特殊情况下，慢的难以忍受。
+  - 所以DBA的重要工作之一，就是检查索引层级并优化。
+- 索引的目的就是希望尽可能的被索引的字段不重复，那么查找的效率就是1，如果完全重复，效率就是N,如果部分重复，那么效率会小于N，视重复量而定。mysql的索引算法是Btree。 
+
+<br>
+
+![为什么重复值高的字段不能建索引（比如性别字段等)](https://images2018.cnblogs.com/blog/35158/201806/35158-20180628110430497-1856877204.png)
+
+## 结论（以innodb为例）
+1. 非聚簇索引存储了对主键的引用，如果select字段不在非聚簇索引内，就需要跳到主键索引（上图中从右边的索引树跳到左边的索引树），再获取select字段值
+2. 如果非聚簇索引值重复率高，那么查询时就会大量出现上图中从右边跳到左边的情况，导致整个流程很慢
+3. 如果where值重复率高的字段，select用了limit，只查较少数据，也就是跳的次数很少的情况下，还是可以建索引的（后来想想也没必要，limit限制了数量，全表扫描也很快，除非字段值是排序的，必须扫描完前面的所有值）
+4. 如果没有3这个前提，则不建议在值重复率高的字段上建索引，因为查询效率低，还需要维护索引
+
+<br>
+
+## SQL有三个类型的索引
+
+- **唯一索引**不能有重复, 
+- **聚集索引**，**非聚集索引** 可以有重复
+
+1. SQL如果创建时候，不指定类型那么默认是非聚集索引
+2. 聚集索引和非聚集索引都可以有重复记录，唯一索引不能有重复记录。
+3. 主键 默认是加了唯一约束的聚集索引，但是也可以在主键创建时，指定为唯一约束的非聚集索引，因此主键仅仅是默认加了唯一约束的聚集索引，不能说主键就是加了唯一约束的聚集索引
+
+
+<br>
+
+MySQL中两种方式给字段添加索引
+
+<details>
+<summary>&#127808; ALTER TABLE tableName ADD INDEX (columnName1, columnName2); &#127808;</summary>
+  
+
+1. 添加主键
+
+```sql
+ALTER TABLE tbl_name ADD PRIMARY KEY (col_list);
+// 该语句添加一个主键，这意味着索引值必须是唯一的，且不能为NULL。
+```
+
+2. 添加唯一索引
+
+```sql
+ALTER TABLE tbl_name ADD UNIQUE index_name (col_list);
+// 这条语句创建索引的值必须是唯一的。
+```
+
+3. 添加普通索引
+
+```sql
+ALTER TABLE tbl_name ADD INDEX index_name (col_list);
+// 添加普通索引，索引值可出现多次。
+```
+
+4. 添加全文索引
+
+```sql
+ALTER TABLE tbl_name ADD FULLTEXT index_name (col_list);
+// 该语句指定了索引为 FULLTEXT ，用于全文索引。
+```
+
+5. 删除索引的语法
+
+```sql
+ALTER TABLE tbl_name DROP INDEX index_name；
+ALTER TABLE tbl_name DROP PRIMARY KEY;
+```
+</details>
+
+<details>
+<summary>&#127808; CREATE INDEX index_name HeadOfState (columnName1, columnName2); &#127808;</summary>
+  
+1. 添加主键
+
+```sql
+# 不能用CREATE INDEX语句创建PRIMARY KEY索引。
+```
+
+2. 添加唯一索引
+
+```sql
+create unique index index_name on table_name (column_list) ;　　#表中有primary Key后不能用uniq index。
+// 这条语句创建索引的值必须是唯一的。
+```
+
+3. 添加普通索引
+
+```sql
+create index index_name on table_name (column_list) ;
+// 添加普通索引，索引值可出现多次。
+```
+
+4. 添加全文索引
+
+```sql
+ALTER TABLE tbl_name ADD FULLTEXT index_name (col_list);
+// 该语句指定了索引为 FULLTEXT ，用于全文索引。
+```
+  
+5. 删除索引的语法
+
+```sql
+DROP INDEX index_name ON tbl_name; 
+// 或者
+ALTER TABLE tbl_name DROP INDEX index_name；
+ALTER TABLE tbl_name DROP PRIMARY KEY;
+```
+  
+</details>
+
+<details>
+<summary>&#127808; 两者区别 &#127808;</summary>
+  
+1. CREATE INDEX必须提供索引名，对于ALTER TABLE，将会自动创建，如果你不提供；
+2. CREATE INDEX一个语句一次只能建立一个索引，ALTER TABLE可以在一个语句建立多个，
+    - 如：ALTER TABLE HeadOfState ADD PRIMARY KEY (ID), ADD INDEX (LastName,FirstName);
+3. 只有ALTER TABLE 才能创建主键，
+</details>
+<br>
+
+### 删除索引的注意点
+
+<details>
+<summary>&#127808; 删除索引的注意点&#127808;</summary>
+  
+```sql
+DROP INDEX index_name ON tbl_name; 
+// 或者
+ALTER TABLE tbl_name DROP INDEX index_name；
+ALTER TABLE tbl_name DROP PRIMARY KEY;
+
+/* 其中，在前面的两条语句中，都删除了table_name中的索引index_name。而在最后一条语句中，只在删除PRIMARY KEY索引中使用，因为一个表只可能有一个PRIMARY KEY索引，因此不需要指定索引名。如果没有创建PRIMARY KEY索引，但表具有一个或多个UNIQUE索引，则MySQL将删除第一个UNIQUE索引。
+如果从表中删除某列，则索引会受影响。对于多列组合的索引，如果删除其中的某列，则该列也会从索引中删除。如果删除组成索引的所有列，则整个索引将被删除。
+删除索引的操作，如下面的代码：
+mysql> drop index shili on tpsc ;
+Query OK, 2 rows affected (0.08 sec)
+Records: 2 Duplicates: 0 Warnings: 0
+该语句删除了前面创建的名称为“shili”的索引。
+*/
+```
+</details>
