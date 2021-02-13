@@ -17,4 +17,5 @@
 - [SQL38 创建视图](MySQL_Code/SQL38.md)
 - [SQL39 创建索引 + 查询强制索引](MySQL_Code/SQL39.md)
 - [SQL40 增加列 - 表操作](MySQL_Code/SQL40.md)
-- [SQL40 创建触发器](MySQL_Code/SQL41.md)
+- [SQL41 创建触发器](MySQL_Code/SQL41.md)
+- [SQL42 删除指定数据(需别名)](MySQL_Code/SQL42.md)
