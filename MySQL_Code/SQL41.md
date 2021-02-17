@@ -6,7 +6,7 @@
 
 
 <details>
-<summary>&#127808; View The Codes &#127808;</summary>
+<summary>&#127808; View The SQL &#127808;</summary>
   
 
 ```sql
