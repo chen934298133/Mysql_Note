@@ -34,3 +34,13 @@
 - [SQL57 关键字exists使用](MySQL_Code/SQL57.md)
 - [SQL59 关键字case使用](MySQL_Code/SQL59.md)
 - [SQL60 SUM(salary) OVER(ORDER BY emp_no)](MySQL_Code/SQL60.md)
+- [SQL61 单表多查](MySQL_Code/SQL61.md)
+- [SQL62 group by + having ...](MySQL_Code/SQL62.md)
+- [SQL63 笛卡尔积去重实现排名/窗口函数](MySQL_Code/SQL63.md)
+- [SQL64 left join](MySQL_Code/SQL64.md)
+- [SQL65 round + sum + count + 乘除](MySQL_Code/SQL65.md)
+
+
+## 其他
+- [SQL数据类型](SQL数据类型.md)
+- [MySQL增删改查基础](MySQL增删改查基础.md)

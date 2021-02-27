@@ -1,5 +1,5 @@
 ## SQL 23
-**获取所有非manager员工当前的薪水情况，给出dept_no、emp_no以及salary ，当前表示to_date='9999-01-01'**
+## &#127800; 获取所有非 manager 员工当前的薪水情况，给出 dept_no、emp_no以及 salary ，当前表示 to_date='9999-01-01'
 
 ```sql
 CREATE TABLE `salaries` (
