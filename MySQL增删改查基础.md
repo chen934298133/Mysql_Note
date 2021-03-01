@@ -73,12 +73,10 @@ delete from 表名 where 筛选条件
 rename table 老表名 to 新表名
 # 修改表选项：
 alter table my_student charset utf8
+# 修改表字段名
+alter table login change data date date;
 ```
-```sql
-# 更新数据表
-update 表名 set 字段 = 值 [where 筛选条件]
-# 这里不加table
-```
+
 
 ## &#127800; 4. 查看数据表
 
@@ -128,6 +126,11 @@ values
 ```
 ## &#127800; 2 删除数据
 ## &#127800; 3 修改数据
+```sql
+# 更新数据表
+update 表名 set 字段 = 值 [where 筛选条件]
+# 这里不加table
+```
 ## &#127800; 4 查询数据
 
 ```sql

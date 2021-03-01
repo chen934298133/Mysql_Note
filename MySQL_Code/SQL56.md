@@ -42,11 +42,9 @@ PRIMARY KEY (`emp_no`));
 SELECT e.emp_no, d.dept_no, b.btype, b.received
 FROM employees e 
 
-JOIN dept_emp d
-ON e.emp_no = d.emp_no
+JOIN dept_emp d ON e.emp_no = d.emp_no
 
-LEFT JOIN emp_bonus b 
-ON e.emp_no = b.emp_no
+LEFT JOIN emp_bonus b ON e.emp_no = b.emp_no
 ```
 </details>
 

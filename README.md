@@ -30,7 +30,7 @@
 - [SQL53 汇总同一部门的员工号，按逗号连接](MySQL_Code/SQL53.md)
 - [SQL54 排除最值算平均](MySQL_Code/SQL54.md)
 - [SQL55 Limit分页](MySQL_Code/SQL55.md)
-- [SQL56 多表联查](MySQL_Code/SQL56.md)
+- [SQL56 多表联查 join + left join](MySQL_Code/SQL56.md)
 - [SQL57 关键字exists使用](MySQL_Code/SQL57.md)
 - [SQL59 关键字case使用](MySQL_Code/SQL59.md)
 - [SQL60 SUM(salary) OVER(ORDER BY emp_no)](MySQL_Code/SQL60.md)
@@ -39,6 +39,8 @@
 - [SQL63 笛卡尔积去重实现排名/窗口函数](MySQL_Code/SQL63.md)
 - [SQL64 left join](MySQL_Code/SQL64.md)
 - [SQL65 round + sum + count + 乘除](MySQL_Code/SQL65.md)
+- [SQL65 MAX/MIN(date)](MySQL_Code/SQL66.md)
+- [SQL65 双join出错，需要额外获取信息](MySQL_Code/SQL67.md)
 
 
 ## 其他
