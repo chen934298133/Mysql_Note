@@ -39,10 +39,15 @@
 - [SQL63 笛卡尔积去重实现排名/窗口函数](MySQL_Code/SQL63.md)
 - [SQL64 left join](MySQL_Code/SQL64.md)
 - [SQL65 round + sum + count + 乘除](MySQL_Code/SQL65.md)
-- [SQL65 MAX/MIN(date)](MySQL_Code/SQL66.md)
-- [SQL65 双join出错，需要额外获取信息](MySQL_Code/SQL67.md)
+- [SQL66 MAX/MIN(date)](MySQL_Code/SQL66.md)
+- [SQL67 双join出错，需要额外获取信息](MySQL_Code/SQL67.md)
+- [SQL68 DATE_ADD + round + count distinct](MySQL_Code/SQL68.md)
+- [SQL69 IFNULL() + left join / 窗口函数row_number()](MySQL_Code/SQL69.md)
 
 
 ## 其他
-- [SQL数据类型](SQL数据类型.md)
-- [MySQL增删改查基础](MySQL增删改查基础.md)
+- [1.MySQL增删改查基础](1.MySQL增删改查基础.md)
+- [2.SQL数据类型](2.SQL数据类型.md)
+- [3.MySQL函数集合](3.MySQL函数集合.md)
+- [4.疑问](4.疑问.md)
+- [5.SQL索引](5.SQL索引.md)
