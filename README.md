@@ -51,3 +51,7 @@
 - [3.MySQL函数集合](3.MySQL函数集合.md)
 - [4.疑问](4.疑问.md)
 - [5.SQL索引](5.SQL索引.md)
+
+## JDBC
+- [JDBC原理](JDBC/JDBC原理.md)
+- [第一个JDBC程序](JDBC/第一个JDBC程序.md)
