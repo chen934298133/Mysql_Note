@@ -51,6 +51,9 @@
 - [3.MySQL函数集合](3.MySQL函数集合.md)
 - [4.疑问](4.疑问.md)
 - [5.SQL索引](5.SQL索引.md)
+- [6.SQL执行顺序](6.SQL执行顺序.md)
+- [7.MySQL何时适合建立索引](7.MySQL何时适合建立索引.md)
+- [8.MySQL——Explain](8.MySQL——Explain.md)
 
 ## JDBC
 - [JDBC原理](JDBC/JDBC原理.md)
